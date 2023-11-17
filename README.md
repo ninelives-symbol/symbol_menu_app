@@ -6,5 +6,16 @@ The app allows venues to add and remove menu items and to update metadata (e.g. 
 
 Finally, the user can order items from the menu and pay in XYM. They select which items they want to order along with the quantity required. The price is then calculated and the transaction is created. Clicking on the URI will submit the transaction. The venue will receive the order which includes a message with the customer's table number and the order details along with the payment. If the venue accepts and signs the transaction then the mosaic supply for all items ordered will be decremented by the number of each item ordered.
 
+# Example customer order
+
 https://github.com/ninelives-symbol/symbol_menu_app/assets/142909712/9c1c72fd-af2e-4f2a-be93-906aa4966c7e
 
+# Demo
+
+Browse menus: http://xymharvesting.net/menu/
+
+Ordering: http://xymharvesting.net/menu/index.html?address=TDLV5CV3XTOYQGKBZZEJPEU3CTHCF2C7WCGENII&name=Fry%20Me%20a%20River
+
+Venue registration: http://xymharvesting.net/menu/register.html
+
+Inventory modification: http://xymharvesting.net/menu/inventory.html?address=TDLV5CV3XTOYQGKBZZEJPEU3CTHCF2C7WCGENII
