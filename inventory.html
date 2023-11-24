@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=IBM+Plex+Sans:ital@0;1&display=swap" rel="stylesheet">
     <title>Inventory Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="styles.css">
@@ -26,11 +29,11 @@
             </tbody>
         </table>
         
-        <button id="add-new-row">Add Row</button>
+        <button id="add-new-row" class="new-row-btn">Add Row</button>
         <div id="content"></div>
-        <button id="save-inventory" class="save-btn">Save Changes</button>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/dist/qrcode.min.js"></script>
+        <div class="center-container">
+            <button id="save-inventory" class="save-btn">Save Changes</button>
+        </div>
     <script type="module" src="inventory.js"></script>
 </body>
 </html>

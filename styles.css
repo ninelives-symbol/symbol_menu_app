@@ -1,9 +1,16 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    background: #f8f9fa;
+    font-family: 'Aldrich', sans-serif;
+    color: #333333;
+    background: #faf9fb;
+}
+
+h1, h2, h3, h4, .title, .box-title {
+    font-family: 'Aldrich', sans-serif;
+    color: #01526a;
+}
+
+a {
+    color: #7413a4;
 }
 
 .box {
@@ -46,15 +53,26 @@ body {
 .data-element {
     flex: 1;
     padding: 5px;
-    text-align: center;
-    border: 1px solid #e0e0e0;  /* Border */
-    background-color: #f5f5f5;  /* Light grey background */
-    margin: 0 5px;  /* Spacing between boxes */
-    border-radius: 5px;  /* Rounded edges */
-    min-height: 40px;  /* Same height for all boxes */
+    text-align: left;
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+    margin: 0 5px;
+    border-radius: 5px;
+    min-height: 40px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    align-self: stretch;
+    background-color: #f2f0f4;
+    padding: 5px 20px;
+}
+
+.data-element:nth-child(1) {
+    flex: 2;
+    font-weight: 600;
+}
+
+.data-element:nth-child(2) {
+    flex: 4;
 }
 
 .data-element button {
@@ -74,34 +92,81 @@ body {
     transition: background-color 0.3s ease;  /* Transition for hover effect */
 }
 
-.calculate-btn:hover {
-    background-color: #0056b3;  /* Darker shade on hover */
+.remove-button {
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.new-row-btn{
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+.save-btn{
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+}
+
+.button, .submit-order-btn {
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.button, .calculate-btn {
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
 }
 
 /* Total Price Display Styling */
 .total-price-display {
-    background-color: #f5f5f5;  /* Light grey background */
-    border: 1px solid #e0e0e0;  /* Border */
-    border-radius: 5px;  /* Rounded edges */
-    margin: 20px 0;  /* Margin for layout */
-    padding: 10px;  /* Padding for inner content */
-    text-align: center;  /* Center text alignment */
-}
-
-/* Responsive Design for Smaller Screens */
-@media screen and (max-width: 768px) {
-    .box, .sub-box, .data-element {
-        margin: 10px 0; /* Reduced margin for smaller screens */
-        padding: 10px; /* Reduced padding for smaller screens */
-    }
-
-    .box-title {
-        font-size: 18px; /* Smaller font size for titles on smaller screens */
-    }
-
-    .calculate-btn, .total-price-display {
-        margin: 10px 0; /* Adjusted margin for smaller screens */
-    }
+    background-color: #f2f0f4;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 10px;
+    text-align: center
 }
 
 /* Specific Styles for Registration Form */
@@ -142,15 +207,15 @@ body {
 }
 
 #registration-box input[type=submit] {
-    width: 100%;
-    background-color: #007BFF; /* Blue background */
-    color: white; /* White text */
-    padding: 14px 20px; /* Padding */
-    margin: 8px 0; /* Margin */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Transition for background color */
+    background-color: #7413a4;
+    font-family: 'Aldrich', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
 }
 
 #registration-box input[type=submit]:hover {
@@ -173,7 +238,7 @@ body {
 }
 
 .inventory-item {
-    font-family: 'Open Sans', sans-serif; /* match the font family */
+    font-family: 'Aldrich', sans-serif;
     font-size: 1em; /* match the font size */
     padding: 0.5em; /* adjust the padding */
     border: 1px solid #ccc; /* standard border */
@@ -185,14 +250,4 @@ body {
     width: 100%; /* Set to the desired width or use 100% to fill the container */
     height: 100px;
     box-sizing: border-box; /* This ensures padding and borders are included in the width */
-}
-@media only screen and (max-width: 768px) {
-    .sub-box {
-        flex-direction: column;
-        align-items: unset;
-    }
-
-    a {
-        word-break: break-word;
-    }
 }

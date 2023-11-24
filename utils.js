@@ -48,7 +48,7 @@ export function decrement(index, docContext = document) {
     }
 }
 
-export function calculateTotal() {
+export async function calculateTotal() {
     const items = document.querySelectorAll('.sub-box');
     let totalUsdPrice = 0;
 
@@ -70,10 +70,28 @@ export function calculateTotal() {
 
     const totalPriceDisplay = document.getElementById('total-price');
     const xymPriceDisplay = document.getElementById('xym-price');
-    const xymPrice = totalUsdPrice / 0.02;  // Assuming 1 XYM = $0.02
 
-    totalPriceDisplay.textContent = `Total Price: $${totalUsdPrice.toFixed(2)}`;
-    xymPriceDisplay.textContent = `Price (XYM): ${xymPrice.toFixed(2)}`;
+    const currentXymRate = await fetchCurrentXymRate();
+    if (currentXymRate) {
+        const xymPrice = totalUsdPrice / currentXymRate;
+        totalPriceDisplay.textContent = `Total Price: $${totalUsdPrice.toFixed(2)}`;
+        xymPriceDisplay.textContent = `Price (XYM): ${xymPrice.toFixed(2)}`;
+    } else {
+        // Handle the scenario where the rate could not be fetched
+        console.error('Could not fetch the current XYM rate');
+    }
+}
+
+export async function updateConversionRateDisplay() {
+    const currentXymRate = await fetchCurrentXymRate();
+    if (currentXymRate) {
+        const conversionRateElement = document.querySelector('.conversion-rate');
+        if (conversionRateElement) {
+            conversionRateElement.textContent = `1 XYM = $${currentXymRate.toFixed(2)}`;
+        }
+    } else {
+        console.error('Could not fetch the current XYM rate');
+    }
 }
 
 export function prepareTransaction(orderData) {
@@ -454,24 +472,13 @@ export function processInventoryDifferences(newItems, inventoryChanges, inventor
     return uri;
 }
 
-// Function to generate and display QR code
-// utils.js
-export function displayQRCode(uri) {
-    const qrCodeDiv = document.createElement('div');
-
-    // Check if QRCode is available
-    if (typeof QRCode !== 'undefined') {
-        new QRCode(qrCodeDiv, {
-            text: uri,
-            width: 128,
-            height: 128,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-
-        document.body.appendChild(qrCodeDiv);
-    } else {
-        console.error('QRCode library not loaded');
+export async function fetchCurrentXymRate() {
+    try {
+        const response = await fetch('https://min-api.cryptocompare.com/data/price?fsym=XYM&tsyms=USD');
+        const data = await response.json();
+        return data.USD;
+    } catch (error) {
+        console.error('Failed to fetch XYM rate:', error);
+        return null;
     }
 }

@@ -39,7 +39,11 @@ function setupForm() {{
         // Open a new window and write the data to it
         const newWindow = window.open('', '_blank');
         if (newWindow) {
-            newWindow.document.write(`<p>Registration Data: ${registrationData}</p><p>URI: <a href="${uri}">${uri}</a></p>`);
+            newWindow.document.write('<link rel="stylesheet" href="styles.css">');
+            newWindow.document.write(`<div class="box">`);
+            newWindow.document.write(`<h2>Registration Data:</h2>`);
+            newWindow.document.write(`<p>${registrationData}</p><p><b>URI: </b><a href="${uri}">Submit registration</a></p>`);
+            newWindow.document.write(`</div>`);
             newWindow.document.close(); // Close the document stream
         } else {
             console.log('Failed to open a new window. It may have been blocked.');

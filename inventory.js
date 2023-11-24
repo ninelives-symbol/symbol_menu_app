@@ -1,4 +1,9 @@
-import {fetchAccountData, fetchMosaicMetadata, generateRandomId, processInventoryDifferences, displayQRCode} from './utils.js';
+import {
+    fetchAccountData,
+    fetchMosaicMetadata,
+    generateRandomId,
+    processInventoryDifferences, increment, decrement, calculateTotal, prepareTransaction
+} from './utils.js';
 console.log('Inventory script loaded');
 
 let address = null; // Global variable for address
@@ -91,7 +96,7 @@ function removeRow(mosaicId) {
         row.remove();
 	    console.log(`State after removal for ${mosaicId}:`, { newState, originalState, removedIds });
     } else {
-        console.error(`No row found with ID: mosaic-${mosaicId}`);
+        console.log(`No row found with ID: mosaic-${mosaicId}`);
     }
 }
 
@@ -128,11 +133,21 @@ function saveInventoryChanges(publicKey, mosaicMetadataMapping, address) {
 
     const changes = processInventoryDifferences(newItems, inventoryChanges, inventorySupplyChange, removals, publicKey, mosaicMetadataMapping, address);
     console.log(changes);
-    displayQRCode(changes); // Call the function to display the QR code
 
     const newWindow = window.open('', '_blank');
     if (newWindow) {
-        newWindow.document.write(`<p>URI: <a href="${changes}">${changes}</a></p>`);
+        newWindow.document.write('<link rel="stylesheet" href="styles.css">');
+        newWindow.document.write(`<div class="box">`);
+        newWindow.document.write(`<p><b>New Items:</b></p>`);
+        newWindow.document.write(`<p>${JSON.stringify(newItems, null, 2)}</p>`);
+        newWindow.document.write(`<p><b>Removed Items:</b></p>`);
+        newWindow.document.write(`<p>${JSON.stringify(removals, null, 2)}</p>`);
+        newWindow.document.write(`<p><b>Updated Items:</b></p>`);
+        newWindow.document.write(`<p>${JSON.stringify(inventoryChanges, null, 2)}</p>`);
+        newWindow.document.write(`<p><b>Supply Changes:</b></p>`);
+        newWindow.document.write(`<p>${JSON.stringify(inventorySupplyChange, null, 2)}</p>`);
+        newWindow.document.write(`<p><b>URI: </b><a href="${changes}">Submit transaction</a></p>`);
+        newWindow.document.write(`</div>`);
         newWindow.document.close(); // Close the document stream
     } else {
         console.log('Failed to open a new window. It may have been blocked.');
@@ -204,6 +219,7 @@ async function onReady() {
             console.error('Error loading inventory:', error);
         }
     }
+
 
     document.getElementById('add-new-row').addEventListener('click', addNewRow);
     document.getElementById('save-inventory').addEventListener('click', () => saveInventoryChanges(publicKey, mosaicMetadataMapping, address));

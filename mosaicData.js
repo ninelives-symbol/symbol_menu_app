@@ -1,9 +1,10 @@
 // mosaicData.js
 
-import { hexToUtf8, increment, decrement, prepareTransaction, fetchAccountData, calculateTotal } from './utils.js';
+import { hexToUtf8, increment, decrement, prepareTransaction, fetchAccountData, calculateTotal, fetchCurrentXymRate } from './utils.js';
 
 let restaurantPublicKey;
 let restaurantAddress;
+let currentXymRate;
 
 export async function fetchMosaicData(address, venue_name = null, directAccess = false) {
     try {
@@ -88,15 +89,17 @@ export async function fetchMosaicData(address, venue_name = null, directAccess =
             }
         }
 
+        currentXymRate = await fetchCurrentXymRate() || 0.02; // Fallback to a default rate if fetch fails
+
         menuContent += `
             <div class="box">
-				<button class="calculate-btn calculate-total-button">Calculate Total Price</button>
+                <button class="calculate-btn calculate-total-button">Calculate Total Price</button>
                 <div class="total-price-display" id="total-price">Total Price: $0</div>
                 <div class="total-price-display" id="xym-price">Price (XYM): 0</div>
-                <div class="conversion-rate">1 XYM = $0.02</div>
+                <div class="conversion-rate">1 XYM = $${currentXymRate.toFixed(4)}</div>
                 <div class="total-price-display">
                     Table Number: <input type="text" id="table-number" class="public-key" />
-					<button class="submit-order-btn">Submit</button>
+                    <button class="submit-order-btn">Submit</button>
                 </div>
             </div>
         `;
@@ -165,8 +168,7 @@ function submitOrder() {
         }
     });
 
-    totalXymPrice = totalUsdPrice / 0.02;
-
+    totalXymPrice = totalUsdPrice / currentXymRate;
     // Check for ordered items first
     if (totalUsdPrice <= 0) {
         alert('Please select items before submitting.');
