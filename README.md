@@ -8,7 +8,19 @@ Finally, the user can order items from the menu and pay in XYM. They select whic
 
 # Example customer order
 
-https://github.com/ninelives-symbol/symbol_menu_app/assets/142909712/9c1c72fd-af2e-4f2a-be93-906aa4966c7e
+
+https://github.com/ninelives-symbol/symbol_menu_app/assets/142909712/8f57ace0-c1a8-47e1-8962-a97e5b5f9be9
+
+# Example inventory update
+
+
+https://github.com/ninelives-symbol/symbol_menu_app/assets/142909712/7d76d5a8-7256-4d20-8aa0-fd7ab3c09cae
+
+# Example venue registration
+
+
+https://github.com/ninelives-symbol/symbol_menu_app/assets/142909712/0e3dffb3-23be-40f2-98fd-a4318b82c7ac
+
 
 # Demo
 
