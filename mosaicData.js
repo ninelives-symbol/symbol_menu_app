@@ -201,6 +201,11 @@ function submitOrder() {
 
     // Open a new window and display the captured information
     let newWindow = window.open("", "_blank");
+    newWindow.document.write('<link rel="preconnect" href="https://fonts.googleapis.com">');
+    newWindow.document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
+    newWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Aldrich&family=IBM+Plex+Sans:ital@0;1&display=swap" rel="stylesheet">');
+    newWindow.document.write('<meta charset="UTF-8">');
+    newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
     newWindow.document.write('<link rel="stylesheet" href="styles.css">');
     newWindow.document.write(`<div class="box">`);
 	newWindow.increment = increment;
@@ -215,7 +220,7 @@ function submitOrder() {
         newWindow.document.write(`${item}<br>`);
     });
     
-    newWindow.document.write(`<br>Total Price (USD): $${totalUsdPrice.toFixed(2)}<br>`);
+    newWindow.document.write(`<br>Total Price (USD): $${totalUsdPrice.toFixed(2)}<br><br>`);
     newWindow.document.write(`Total Price (XYM): ${totalXymPrice.toFixed(2)}<br><br>`);
     
 

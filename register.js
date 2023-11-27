@@ -39,6 +39,11 @@ function setupForm() {{
         // Open a new window and write the data to it
         const newWindow = window.open('', '_blank');
         if (newWindow) {
+            newWindow.document.write('<link rel="preconnect" href="https://fonts.googleapis.com">');
+            newWindow.document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
+            newWindow.document.write('<link href="https://fonts.googleapis.com/css2?family=Aldrich&family=IBM+Plex+Sans:ital@0;1&display=swap" rel="stylesheet">');
+            newWindow.document.write('<meta charset="UTF-8">');
+            newWindow.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
             newWindow.document.write('<link rel="stylesheet" href="styles.css">');
             newWindow.document.write(`<div class="box">`);
             newWindow.document.write(`<h2>Registration Data:</h2>`);
