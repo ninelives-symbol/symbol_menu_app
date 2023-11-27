@@ -7,8 +7,7 @@ const symbol_address = urlParams.get('address');
 console.log("Parsed Symbol address:", symbol_address);
 
 if (!symbol_address) {
-    // Fetch and display all venues
-    fetchAllVenues();
+
 } else {
     // Fetch the menu data for the given Symbol address
     console.log("Fetching Mosaic Data for:", symbol_address);
